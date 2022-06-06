@@ -1,0 +1,31 @@
+<!-- <p *ngIf="!sparqlResult.results.bindings.length()">
+  Geen resultaat
+</p> -->
+<div *ngIf="error" class="error">
+  <h1>Oops!</h1>
+  <p [innerHtml]="error"></p>
+  <p>
+    <a class="button but_main" (click)="restart()">Begin opnieuw</a>
+  </p>
+</div>
+<div *ngIf="kaart">
+  <p class="but_inline">
+    <a [class.active]="resultMode == 'kaart'" class="button but_secondary" (click)="mode('kaart')">Kaart</a>
+    <a [class.active]="resultMode == 'rdf'" class="button but_secondary" (click)="mode('rdf')">RDF</a>
+    <a [class.active]="resultMode == 'sparql'" class="button but_secondary" (click)="mode('sparql')">Sparql</a>
+  </p>
+  <prism *ngIf="resultMode == 'sparql'" language="sparql" source="{{persoon!.sparql()}}"></prism>
+  <prism *ngIf="resultMode == 'rdf'" language="turtle" source="{{ rdf }}"></prism>
+  <h1 
+     *ngIf="resultMode == 'kaart'"
+    class="kaart {{ persoon?.kleurKaart() }}" 
+    >
+    <img [src]="kaart.afbeelding">
+    <p>{{ kaart.voornaam }}</p>
+  </h1>
+  <a class="button but_main" (click)="restart()">Begin opnieuw</a>
+</div>
+<div *ngIf="!kaart && !error">
+  <img class="spinner" src="assets/spinner.gif">
+  <p>bezig met zoeken naar jouw kaart &hellip;</p>
+</div>

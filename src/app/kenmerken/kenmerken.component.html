@@ -1,0 +1,36 @@
+<div *ngIf="count == 1">
+  <p>
+    Het lijkt er op dat we je kaart gevonden hebben!
+  </p>
+  <p>
+    <a class="button but_main" routerLink="/resultaat">Bekijk resultaat</a>
+  </p>
+</div>
+<div *ngIf="count == 0">
+  <h2>Oops!</h2>
+  <p>
+    Het lijkt er op dat we geen kaart kunnen vinden <br>
+    die aan jou beschrijving voldoet.
+  </p>
+  <prism language="sparql" source="{{persoon!.sparql()}}"></prism>
+  <p>
+    <a class="button but_main" (click)="reset()">Begin opnieuw</a>
+  </p>
+</div>
+<div *ngIf="count > 1">
+  <h1>Kenmerken van jouw kaart</h1>
+  <h2>{{ tuple!.question }}:</h2>
+  <ul>
+    <li *ngFor="let obj of tuple!.objects">
+      <a 
+        class="button but_secondary" 
+        [class.active]="tuple!.object == obj" (click)="setObject(obj)">{{ obj.label }}</a>
+    </li>
+  </ul>
+  <!-- <div *ngFor="let t of persoon?.tuplesAsArray()">
+    <prism *ngIf="t.predicate != 'kleurkaart'" language="turtle" source="{{ persoon?.getIri() }} {{ t.getPredicate() }} {{ t.getObject() }} ">
+    </prism>
+  </div> -->
+</div>
+<!-- <a *ngIf="hasNext() && tuple?.hasObject() && count>1" class="button but_main" (click)="next()">Volgende kenmerk &raquo;</a> -->
+<!-- <a *ngIf="(!hasNext() && tuple?.hasObject()) || count == 1" class="button but_main" routerLink="/resultaat">Bekijk resultaat</a> -->

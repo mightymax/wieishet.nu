@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Al> a :Persoon;
+  schema:givenName "Al";
+  schema:image <https://wieishet.nu/assets/personen/Al.jpg>; 
+  :kleurhaar :Kaal ;
+  :kleurogen :Groen ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing true;
+  :bril true ;
+.

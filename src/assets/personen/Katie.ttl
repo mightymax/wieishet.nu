@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Katie> a :Persoon;
+  schema:givenName "Katie";
+  schema:image <https://wieishet.nu/assets/personen/Katie.jpg>; 
+  :kleurhaar :Blond ;
+  :kleurogen :Blauw ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking true;
+  :gezichtsbeharing false;
+  :bril false ;
+.

@@ -1,0 +1,159 @@
+//SCSS
+
+//COLORS
+$red: #990606;
+$text: #363636;
+
+html, body {
+    margin:0;
+    padding:0;
+    font-family: 'Allan', cursive;
+    font-size: 100%;
+    line-height: 125%;
+    background-color: #E6E8F1;
+
+}
+header {
+    background-color: $red;
+    height: 60px;
+    display: flex;
+    align-items:center;
+    align-content: center;
+    h1 {
+        margin:0;
+        text-align: center;
+        width:100%;
+        font-weight: 700;
+        a {
+            color:#fff;
+            text-decoration: none;
+        }
+    }
+}
+h2 {
+    font-size: 150%;
+    line-height: 130%;
+    font-weight: 700;
+    margin:30px 0 20px;
+}
+p {
+    font-size: 125%;
+    line-height: 140%;
+    max-width: 500px;
+    margin: 10px auto;
+}
+a {
+    text-decoration: none;
+}
+
+//styling voor start pagina
+.wih-container {
+    height: 100vh;
+    background-image: url('assets/sfeer.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 700px, 100%;
+}
+
+.sparql {
+    .wih-container {
+        background-image: none;
+        margin: 0;
+        padding: 0;
+    }
+    .wih-content {
+        padding: 0;
+    }
+}
+//styling voor vervolg stappen
+.step {
+    .wih-container {
+        height: 100vh;
+        background-image: url('assets/sfeer2.png');
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 700px, 100%;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+            margin-bottom:12px;
+        }
+    }
+}
+
+.wih-content {
+    padding:0 30px;
+    text-align: center;
+}
+
+//Buttons
+a.button {
+    width: 230px;
+    height: 40px;
+    font-family: 'Allan', cursive;
+    font-size: 150%;
+    line-height: 170%;
+    font-weight: 700;
+    display:block;
+    margin:0 auto;
+    cursor: pointer;
+}
+p.but_inline {
+    a.button {
+        width: 80px;
+        display: inline-block;
+        margin: 5px;
+        font-size: 100%;
+        height: 30px;
+
+    }
+}
+//Buttons - primary
+.but_main {
+    background-image: linear-gradient(180deg, #CA0F0F 0%, #990606 62%);
+    border: 3px solid #fff;
+    box-shadow: 0 10px 10px 0 rgba(147,163,190,0.50);
+    border-radius: 6px;
+    color:#fff;
+    &:hover {
+        background-image: none;
+        background-color: #ec2a2a;
+        box-shadow: 0 5px 5px 0 rgba(171, 187, 213, 0.5);
+    }
+}
+.button.but_main {
+    margin-top:30px;
+}
+.but_secondary.but_small,
+.but_main.but_small
+ {
+    font-size: 95%;
+    height: 30px;
+    font-weight: 200;
+}
+//Buttons - secondary
+.but_secondary {
+    background-image: linear-gradient(180deg, #F2F7FB 0%, #EEF1FA 61%);
+    border: 3px solid #98AADF;
+    box-shadow: 0 10px 10px 0 rgba(147,163,190,0.50);
+    border-radius: 6px;
+    color: $text;
+    &:hover {
+        background-image: none;
+        background-color: #fefefe;
+        box-shadow: 0 5px 5px 0 rgba(171, 187, 213, 0.5);
+    }
+    //Button - chosen - active status
+    &.active {
+        background: #fff;
+        border: 3px solid #EB2525;
+    }
+
+    &.correctGuess {
+        background: #fff;
+        border: 3px solid #009900;
+    }
+}

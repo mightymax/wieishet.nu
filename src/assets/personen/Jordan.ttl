@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Jordan> a :Persoon;
+  schema:givenName "Jordan";
+  schema:image <https://wieishet.nu/assets/personen/Jordan.jpg>; 
+  :kleurhaar :Geverfd ;
+  :kleurogen :Bruin ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing true;
+  :bril false ;
+.

@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Amy> a :Persoon;
+  schema:givenName "Amy";
+  schema:image <https://wieishet.nu/assets/personen/Amy.jpg>; 
+  :kleurhaar :Geverfd ;
+  :kleurogen :Bruin ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril true ;
+.

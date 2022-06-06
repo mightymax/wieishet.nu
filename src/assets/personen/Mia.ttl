@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Mia> a :Persoon;
+  schema:givenName "Mia";
+  schema:image <https://wieishet.nu/assets/personen/Mia.jpg>; 
+  :kleurhaar :Zwart ;
+  :kleurogen :Bruin ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.

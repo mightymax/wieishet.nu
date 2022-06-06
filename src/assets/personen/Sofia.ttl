@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Sofia> a :Persoon;
+  schema:givenName "Sofia";
+  schema:image <https://wieishet.nu/assets/personen/Sofia.jpg>; 
+  :kleurhaar :Bruin ;
+  :kleurogen :Groen ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.

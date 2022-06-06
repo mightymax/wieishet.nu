@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Laura> a :Persoon;
+  schema:givenName "Laura";
+  schema:image <https://wieishet.nu/assets/personen/Laura.jpg>; 
+  :kleurhaar :Zwart ;
+  :kleurogen :Groen ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.

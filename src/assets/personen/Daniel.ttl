@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Daniel> a :Persoon;
+  schema:givenName "Daniel";
+  schema:image <https://wieishet.nu/assets/personen/Daniel.jpg>; 
+  :kleurhaar :Rood ;
+  :kleurogen :Groen ;
+  :geslacht :Man ;
+  :hoofdbedekking true;
+  :gezichtsbeharing true;
+  :bril false ;
+.

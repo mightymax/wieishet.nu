@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Eric> a :Persoon;
+  schema:givenName "Eric";
+  schema:image <https://wieishet.nu/assets/personen/Eric.jpg>; 
+  :kleurhaar :Geverfd ;
+  :kleurogen :Blauw ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.

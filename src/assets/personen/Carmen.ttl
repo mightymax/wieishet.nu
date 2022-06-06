@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Carmen> a :Persoon;
+  schema:givenName "Carmen";
+  schema:image <https://wieishet.nu/assets/personen/Carmen.jpg>; 
+  :kleurhaar :GrijsWit ;
+  :kleurogen :Bruin ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.

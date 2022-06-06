@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Emma> a :Persoon;
+  schema:givenName "Emma";
+  schema:image <https://wieishet.nu/assets/personen/Emma.jpg>; 
+  :kleurhaar :Rood ;
+  :kleurogen :Bruin ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.

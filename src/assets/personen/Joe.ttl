@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Joe> a :Persoon;
+  schema:givenName "Joe";
+  schema:image <https://wieishet.nu/assets/personen/Joe.jpg>; 
+  :kleurhaar :Kaal ;
+  :kleurogen :Blauw ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing true;
+  :bril true ;
+.

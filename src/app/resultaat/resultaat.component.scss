@@ -1,0 +1,41 @@
+h1.kaart {
+  margin: 10px auto; 
+  padding: 0;
+  width: 250px;
+  border: 6px solid #990606;
+  border-radius: 8px;
+  background: #F2F7FB;
+  
+
+  &.Rood {
+    background-image: url('/assets/kaart-achtergrond-rood.gif');
+    border-color: #CE1A1A;
+  }
+  
+  &.Geel {
+    background-image: url('/assets/kaart-achtergrond-geel.gif');
+    border-color: #F5D538;
+  }
+
+  &.Blauw {
+    background-image: url('/assets/kaart-achtergrond-blauw.gif');
+    border-color: #38A7E3;
+  }
+
+  img {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 7px;
+  }
+  
+}
+
+img.spinner {
+  margin-top: 40px;
+  width: 48px;
+}

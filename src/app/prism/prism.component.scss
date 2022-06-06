@@ -1,0 +1,10 @@
+@import '~prismjs/themes/prism.min.css';
+
+span.token.prefix {
+  color: #0066cc;
+}
+pre {
+  max-width: 700px;
+  text-align: left;
+  margin: 10px auto;
+}

@@ -1,0 +1,33 @@
+<div *ngIf="error" class="error">
+  <h1>Oops!</h1>
+  <p>{{ error }}</p>
+  <p>
+    <a class="button but_main" href="/">Begin opnieuw</a>
+  </p>
+</div>
+<div *ngIf="!loading && !kaart" class="error">
+  <h1>Oops!</h1>
+  <p>sorry, maar ik kan geen Persoon vinden die "{{ givenName }}" heet</p>
+  <p>
+    <a class="button but_main" href="/">Begin opnieuw</a>
+  </p>
+</div>
+<div *ngIf="kaart">
+  <p class="but_inline">
+    <a [class.active]="resultMode == 'kaart'" class="button but_secondary" (click)="resultMode = 'kaart'">Kaart</a>
+    <a [class.active]="resultMode == 'rdf'" class="button but_secondary" (click)="resultMode = 'rdf'">RDF</a>
+  </p>
+  <h1 
+      *ngIf="resultMode == 'kaart'"
+      class="kaart {{ kleurKaart }}" 
+      >
+      <img [src]="kaart.afbeelding">
+      <p>{{ kaart.voornaam }}</p>
+    </h1>
+    <prism *ngIf="resultMode == 'rdf'" language="turtle" source="{{ rdf }}"></prism>
+
+</div>
+<div *ngIf="loading && !error">
+  <img class="spinner" src="assets/spinner.gif">
+  <p>bezig met zoeken naar jouw kaart &hellip;</p>
+</div>

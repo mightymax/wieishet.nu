@@ -1,0 +1,35 @@
+<div *ngIf="!tuple">
+  <p *ngFor="let tuple of tuples; let i = index" >
+    <prism *ngIf="guessedTuples.has(tuple)" language="sparql" source="?wie {{tuple.getPredicate()}} {{tuple.object?.getIri()}} ."></prism>
+  </p>
+  <p *ngFor="let tuple of tuples; let i = index" >
+    <a *ngIf="!guessedTuples.has(tuple)" class="button but_secondary but_small" (click)="setTuple(i)">
+      {{ tuple.question }}
+    </a>
+  </p>
+</div>
+<div *ngIf="tuple">
+  <h3>{{ tuple.question }}</h3>
+  <p *ngFor="let obj of tuple.objects">
+    <a 
+      class="button but_secondary but_small"
+      [class.correctGuess]="guessedRight(obj)"
+      [class.active]="guessed(obj)"
+      (click)="answer(obj)">
+      {{ obj.label }} 
+    </a>
+  </p>
+  <p>
+    <a class="button but_main" (click)="tuple = undefined">
+      &laquo; terug
+    </a>
+  </p>
+</div>
+<div *ngIf="results" [ngClass]="{'kaarten': results.length > 1}">
+  <h1 *ngFor="let kaart of results" class="kaart {{ kleurKaart() }}" (click)="goto(kaart.voornaam.value)" style="cursor: pointer;">
+    <img [src]="kaart.afbeelding.value">
+    <p>{{ kaart.voornaam.value }}</p>
+  </h1>
+</div>
+<p>je hebt {{ guesses }} keer geraden</p>
+<p><a class="button but_main" href="/spel">Start opnieuw</a></p>

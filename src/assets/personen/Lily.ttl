@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Lily> a :Persoon;
+  schema:givenName "Lily";
+  schema:image <https://wieishet.nu/assets/personen/Lily.jpg>; 
+  :kleurhaar :Bruin ;
+  :kleurogen :Groen ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking true;
+  :gezichtsbeharing false;
+  :bril false ;
+.

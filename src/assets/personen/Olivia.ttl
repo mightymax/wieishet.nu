@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Olivia> a :Persoon;
+  schema:givenName "Olivia";
+  schema:image <https://wieishet.nu/assets/personen/Olivia.jpg>; 
+  :kleurhaar :Geverfd ;
+  :kleurogen :Bruin ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.

@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Ben> a :Persoon;
+  schema:givenName "Ben";
+  schema:image <https://wieishet.nu/assets/personen/Ben.jpg>; 
+  :kleurhaar :Bruin ;
+  :kleurogen :Bruin ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril true ;
+.

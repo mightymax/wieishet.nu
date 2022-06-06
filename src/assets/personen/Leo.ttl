@@ -1,0 +1,13 @@
+@prefix schema: <https://schema.org/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+<https://wieishet.nu/personen/Leo> a :Persoon;
+  schema:givenName "Leo";
+  schema:image <https://wieishet.nu/assets/personen/Leo.jpg>; 
+  :kleurhaar :GrijsWit ;
+  :kleurogen :Bruin ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing true;
+  :bril false ;
+.

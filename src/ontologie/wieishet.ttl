@@ -1,0 +1,424 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+@prefix personen: <https://wieishet.nu/personen/> .
+@prefix : <https://wieishet.nu/ontologie#> .
+
+: a owl:Ontology ;
+  rdfs:label "Wie is Het?"@nl ;
+  dc:creator "Mark Lindeman <mark@lindeman.nu>" ;
+  rdfs:comment "LoD versie van het aloude spel 'Wie is Het?'"@nl ;
+.
+
+:Persoon a owl:Class;
+  rdfs:subClassOf schema:Persoon ;
+  owl:equivalentClass [
+    a owl:Restriction ;
+    owl:onProperty schema:givenName ;
+    owl:cardinality 1;
+    rdfs:range xsd:string;
+  ], [
+    a owl:Restriction ;
+    owl:onProperty schema:image ;
+    owl:cardinality 1;
+    rdfs:range rdf:resource;
+  ];
+
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :kleurhaar ;
+    owl:allValuesFrom :KleurHaar ;
+  ], [
+    a owl:Restriction ;
+    owl:onProperty :kleurogen ;
+    owl:allValuesFrom :KleurOgen ;
+  ], [
+    a owl:Restriction ;
+    owl:onProperty :geslacht ;
+    owl:allValuesFrom :Geslacht ;
+  ],[
+    a owl:Restriction ;
+    owl:onProperty :bril ;
+    owl:oneOf ( true false );
+  ],[
+    a owl:Restriction ;
+    owl:onProperty :hoofdbedekking ;
+    owl:oneOf ( true false );
+  ],[
+    a owl:Restriction ;
+    owl:onProperty :gezichtsbeharing ;
+    owl:oneOf ( true false );
+  ] ;
+.
+
+:KleurHaar a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :kleurhaar ;
+    owl:allValuesFrom :Persoon ;
+  ]
+.
+
+:KleurOgen a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :kleurhaar ;
+    owl:allValuesFrom :Persoon ;
+  ]
+.
+
+:Geslacht a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :geslacht ;
+    owl:allValuesFrom :Persoon ;
+  ]
+.
+
+# Data properties:
+schema:givenName a owl:DatatypeProperty ;
+  rdfs:domain :Persoon ;
+  rdfs:range xsd:string ;
+.
+
+schema:image a owl:DatatypeProperty ;
+  rdfs:domain :Persoon ;
+  rdfs:range rdf:resource ;
+.
+
+:kleurhaar a owl:DatatypeProperty ;
+  rdfs:domain :Persoon ;
+  rdfs:range :KleurHaar
+.
+
+:kleurogen a owl:DatatypeProperty ;
+  rdfs:domain :Persoon ;
+  rdfs:range :KleurOgen
+.
+
+:geslacht a owl:DatatypeProperty ;
+  rdfs:domain :Persoon ;
+  rdfs:range :Geslacht ;
+  owl:subPropertyOf schema:GenderType ; 
+.
+
+:bril a owl:DatatypeProperty ;
+  rdfs:domain :Persoon ;
+  rdfs:range xsd:boolean ;
+. 
+
+:hoofdbedekking a owl:DatatypeProperty ;
+  rdfs:domain :Persoon ;
+  rdfs:range xsd:boolean ;
+. 
+
+:gezichtsbeharing a owl:DatatypeProperty ;
+  rdfs:domain :Persoon ;
+  rdfs:range xsd:boolean ;
+. 
+
+:Blond a owl:NamedIndividual, :KleurHaar;
+  rdfs:label "Blond" .
+
+:Bruin a owl:NamedIndividual, :KleurHaar;
+  rdfs:label "Bruin" .
+
+:Rood a owl:NamedIndividual, :KleurHaar;
+  rdfs:label "Rood" .
+
+:Zwart a owl:NamedIndividual, :KleurHaar;
+  rdfs:label "Zwart" .
+
+:GrijsWit a owl:NamedIndividual, :KleurHaar;
+  rdfs:label "Grijs/Wit" .
+
+:Kaal a owl:NamedIndividual, :KleurHaar;
+  rdfs:label "Kaal" .
+
+:Geverfd a owl:NamedIndividual, :KleurHaar;
+  rdfs:label "Geverfd/Gemixt" .
+
+:Bruin a :KleurOgen .
+
+:Blauw a owl:NamedIndividual, :KleurOgen;
+  rdfs:label "Blauw" .
+
+:Groen a owl:NamedIndividual, :KleurOgen;
+  rdfs:label "Groen" .
+
+:Man a owl:NamedIndividual, :Geslacht ;
+  rdfs:label "Man" .
+
+:Vrouw a owl:NamedIndividual, :Geslacht ;
+  rdfs:label "Vrouw" .
+
+:PersoonShape a sh:NodeShape ;
+  sh:label "Persoon shape" ;
+  sh:closed true;
+  sh:ignoredProperties (rdf:type) ;
+  sh:targetClass :Persoon ;
+  sh:property [
+    sh:path schema:givenName ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:string ;
+  ], [
+    sh:path :kleurhaar ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:class :KleurHaar ;
+  ], [
+    sh:path :kleurogen ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:class :KleurOgen ;
+  ], [
+    sh:path :geslacht ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:class :Geslacht ;
+  ], [
+    sh:path :bril ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:boolean ;
+  ], [
+    sh:path :hoofdbedekking ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:boolean ;
+  ], [
+    sh:path :gezichtsbeharing ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:boolean ;
+  ]
+.
+
+
+# Kaartjes:
+personen:Mike a :Persoon ;
+  schema:givenName "Mike";
+  schema:image <https://wieishet.nu/assets/personen/Mike.jpg>; 
+  :kleurhaar :Zwart ;
+  :kleurogen :Bruin ;
+  :geslacht :Man ;
+  :hoofdbedekking true;
+  :gezichtsbeharing false;
+  :bril false ;
+.
+
+personen:Jordan a :Persoon ;
+  schema:givenName "Jordan";
+  schema:image <https://wieishet.nu/assets/personen/Jordan.jpg>; 
+  :kleurhaar :Geverfd ;
+  :kleurogen :Bruin ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing true;
+  :bril false ;
+.
+
+personen:Daniel a :Persoon ;
+  schema:givenName "Daniel";
+  schema:image <https://wieishet.nu/assets/personen/Daniel.jpg>; 
+  :kleurhaar :Rood ;
+  :kleurogen :Groen ;
+  :geslacht :Man ;
+  :hoofdbedekking true;
+  :gezichtsbeharing true;
+  :bril false ;
+.
+
+personen:Sam a :Persoon ;
+  schema:givenName "Sam";
+  schema:image <https://wieishet.nu/assets/personen/Sam.jpg>; 
+  :kleurhaar :Zwart ;
+  :kleurogen :Groen ;
+  :geslacht :Man ;
+  :hoofdbedekking true;
+  :gezichtsbeharing false;
+  :bril false ;
+.
+
+personen:Leo a :Persoon ;
+  schema:givenName "Leo";
+  schema:image <https://wieishet.nu/assets/personen/Leo.jpg>; 
+  :kleurhaar :GrijsWit ;
+  :kleurogen :Bruin ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing true;
+  :bril false ;
+.
+
+personen:Amy a :Persoon ;
+  schema:givenName "Amy";
+  schema:image <https://wieishet.nu/assets/personen/Amy.jpg>; 
+  :kleurhaar :Geverfd ;
+  :kleurogen :Bruin ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril true ;
+.
+
+personen:Laura a :Persoon ;
+  schema:givenName "Laura";
+  schema:image <https://wieishet.nu/assets/personen/Laura.jpg>; 
+  :kleurhaar :Zwart ;
+  :kleurogen :Groen ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.
+
+personen:Olivia a :Persoon ;
+  schema:givenName "Olivia";
+  schema:image <https://wieishet.nu/assets/personen/Olivia.jpg>; 
+  :kleurhaar :Geverfd ;
+  :kleurogen :Bruin ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.
+
+personen:Rachel a :Persoon ;
+  schema:givenName "Rachel";
+  schema:image <https://wieishet.nu/assets/personen/Rachel.jpg>; 
+  :kleurhaar :Bruin ;
+  :kleurogen :Blauw ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril true ;
+.
+
+personen:Sofia a :Persoon ;
+  schema:givenName "Sofia";
+  schema:image <https://wieishet.nu/assets/personen/Sofia.jpg>; 
+  :kleurhaar :Bruin ;
+  :kleurogen :Groen ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.
+
+personen:Katie a :Persoon ;
+  schema:givenName "Katie";
+  schema:image <https://wieishet.nu/assets/personen/Katie.jpg>; 
+  :kleurhaar :Blond ;
+  :kleurogen :Blauw ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking true;
+  :gezichtsbeharing false;
+  :bril false ;
+.
+
+personen:Lily a :Persoon ;
+  schema:givenName "Lily";
+  schema:image <https://wieishet.nu/assets/personen/Lily.jpg>; 
+  :kleurhaar :Bruin ;
+  :kleurogen :Groen ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking true;
+  :gezichtsbeharing false;
+  :bril false ;
+.
+
+personen:Mia a :Persoon ;
+  schema:givenName "Mia";
+  schema:image <https://wieishet.nu/assets/personen/Mia.jpg>; 
+  :kleurhaar :Zwart ;
+  :kleurogen :Bruin ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.
+
+personen:Carmen a :Persoon ;
+  schema:givenName "Carmen";
+  schema:image <https://wieishet.nu/assets/personen/Carmen.jpg>; 
+  :kleurhaar :GrijsWit ;
+  :kleurogen :Bruin ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.
+
+personen:Emma a :Persoon ;
+  schema:givenName "Emma";
+  schema:image <https://wieishet.nu/assets/personen/Emma.jpg>; 
+  :kleurhaar :Rood ;
+  :kleurogen :Bruin ;
+  :geslacht :Vrouw ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.
+
+personen:Al a :Persoon ;
+  schema:givenName "Al";
+  schema:image <https://wieishet.nu/assets/personen/Al.jpg>; 
+  :kleurhaar :Kaal ;
+  :kleurogen :Groen ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing true;
+  :bril true ;
+.
+
+personen:Eric a :Persoon ;
+  schema:givenName "Eric";
+  schema:image <https://wieishet.nu/assets/personen/Eric.jpg>; 
+  :kleurhaar :Geverfd ;
+  :kleurogen :Blauw ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril false ;
+.
+
+personen:Ben a :Persoon ;
+  schema:givenName "Ben";
+  schema:image <https://wieishet.nu/assets/personen/Ben.jpg>; 
+  :kleurhaar :Bruin ;
+  :kleurogen :Bruin ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing false;
+  :bril true ;
+.
+
+personen:Joe a :Persoon ;
+  schema:givenName "Joe";
+  schema:image <https://wieishet.nu/assets/personen/Joe.jpg>; 
+  :kleurhaar :Kaal ;
+  :kleurogen :Blauw ;
+  :geslacht :Man ;
+  :hoofdbedekking false;
+  :gezichtsbeharing true;
+  :bril true ;
+.
+
+personen:David a :Persoon ;
+  schema:givenName "David";
+  schema:image <https://wieishet.nu/assets/personen/David.jpg>; 
+  :kleurhaar :Blond ;
+  :kleurogen :Bruin ;
+  :geslacht :Man ;
+  :hoofdbedekking true;
+  :gezichtsbeharing true;
+  :bril false ;
+.
+
