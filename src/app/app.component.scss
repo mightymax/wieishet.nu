@@ -1,5 +1,5 @@
 //SCSS
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 //COLORS
 $red: #990606;
 $text: #363636;
@@ -11,14 +11,39 @@ html, body {
     font-size: 100%;
     line-height: 125%;
     background-color: #E6E8F1;
-
+    width:100%;
+    height: 100%;
 }
+
+body {
+    display:flex;
+    align-items: stretch;
+    background-image: url('../assets/sfeer.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 700px, 100%;
+    .wih-container {
+        width:100%;
+    }
+}
+
 header {
     background-color: $red;
     height: 60px;
     display: flex;
     align-items:center;
     align-content: center;
+    position: relative;
+    .icon-home {
+        position: absolute;
+        width:40px;
+        height:40px;
+        display: block;
+        left:10px;
+        top:10px;
+        background: url('../assets/home.svg') no-repeat center;
+        background-size: 80%;
+    }
     h1 {
         margin:0;
         text-align: center;
@@ -31,30 +56,46 @@ header {
     }
 }
 h2 {
-    font-size: 150%;
+    font-size: 170%;
     line-height: 130%;
-    font-weight: 700;
+    font-weight: 500;
     margin:30px 0 20px;
 }
 p {
-    font-size: 125%;
-    line-height: 140%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 115%;
+    line-height: 125%;
     max-width: 500px;
     margin: 10px auto;
 }
 a {
     text-decoration: none;
+    color: $red;
+}
+
+prism {
+    background: #fff;
+    display: block;
+    margin: 0;
+    padding: 8px;
+}
+
+.raad-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+    max-width: 700px;
+    margin:0 auto;
+    p {
+        
+        display: inline-block;
+        a {
+            width:150px;
+        }
+    }
 }
 
 //styling voor start pagina
-.wih-container {
-    height: 100vh;
-    background-image: url('assets/sfeer.png');
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: 700px, 100%;
-}
-
 .sparql {
     .wih-container {
         background-image: none;
@@ -67,12 +108,9 @@ a {
 }
 //styling voor vervolg stappen
 .step {
+    position: relative;
+    background: none;;
     .wih-container {
-        height: 100vh;
-        background-image: url('assets/sfeer2.png');
-        background-repeat: no-repeat;
-        background-position: center bottom;
-        background-size: 700px, 100%;
     }
     ul {
         margin: 0;
@@ -81,6 +119,17 @@ a {
         li {
             margin-bottom:12px;
         }
+    }
+    .footer {
+        position: fixed;
+        bottom: 0;
+        background-image: url('../assets/sfeer2.png');
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 700px, 100%;
+        height: 432px;
+        z-index: -1;
+        width:100%;
     }
 }
 
@@ -95,8 +144,8 @@ a.button {
     height: 40px;
     font-family: 'Allan', cursive;
     font-size: 150%;
-    line-height: 170%;
-    font-weight: 700;
+    line-height: 150%;
+    font-weight: 500;
     display:block;
     margin:0 auto;
     cursor: pointer;
@@ -128,12 +177,12 @@ p.but_inline {
     margin-top:30px;
 }
 .but_secondary.but_small,
-.but_main.but_small
- {
+.but_main.but_small {
     font-size: 95%;
     height: 30px;
     font-weight: 200;
 }
+
 //Buttons - secondary
 .but_secondary {
     background-image: linear-gradient(180deg, #F2F7FB 0%, #EEF1FA 61%);

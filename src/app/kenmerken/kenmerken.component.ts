@@ -14,8 +14,9 @@ const DefaultKaartCount = 20
 export class KenmerkenComponent implements OnInit, OnDestroy {
   
   subscription!: Subscription;
-  persoon?: App.Persoon
+  persoon: App.Persoon = new App.Persoon()
   count = DefaultKaartCount
+  results: any | undefined
 
   ns = App.NS
 
@@ -49,11 +50,46 @@ export class KenmerkenComponent implements OnInit, OnDestroy {
 
   updateCount()
   {
-    this.service.count()
-      .subscribe((response: App.IQueryResponseCount) => {
-        this.count = parseInt(response.results.bindings[0].count.value)
-        if (this.count == 1) this.router.navigate(['/resultaat'])
-      })
+    this.service.fetch(this.persoon!.sparql())
+      .subscribe((response: App.IQueryResponse) => {
+        this.results = response.results.bindings
+        this.count = response.results.bindings.length
+      });
+  }
+
+  goto(naam: string)
+  {
+    if(!this.kleurKaart()) {
+      alert('Je moet de kleur van de kaart nog raden!')
+    } else {
+      this.router.navigate([`/personen/${naam}/kleur/${this.kleurKaart()}`]);
+    }
+  }
+
+  kleurKaart() {
+    let kleur: string | undefined = ""
+    this.tuples.forEach(tuple => {
+      if(tuple.getPredicate(false) == 'kleurkaart' && tuple.hasObject()) {
+        kleur = tuple.getObject(false)
+      }
+    });
+    return kleur ? kleur : ""
+  }
+
+  rdf(): string {
+    if (this.persoon?.tuples.size == 0) return ""
+    let rdf: string[] = []
+    this.persoon?.tuples.forEach(tuple => {
+      rdf.push(`${tuple.getPredicate()} ${tuple.getObject()} ;`)
+    });
+    let firstTriple = `${this.persoon?.getIri()} ${rdf.shift()?.trim()}`
+    if (rdf.length) {
+      let lastTriple = `\n   ${rdf.pop()?.replace(/ \;$/, '')}`
+      let othertriples = rdf.length ? `\n   ${rdf.join("\n   ")}` : ""
+      return `${firstTriple}${othertriples}${lastTriple} .`
+    } else {
+      return firstTriple?.replace(/ \;$/, '') + ' .'
+    }
   }
 
   hasNext(): boolean {
@@ -65,7 +101,8 @@ export class KenmerkenComponent implements OnInit, OnDestroy {
     this.tuples.forEach(tuple => tuple.clearObject())
     this.count = DefaultKaartCount
     this.persoon?.reset()
-    this.ix = 0
+    this.ix = -1
+    this.next()
   }
 
   next(): void {

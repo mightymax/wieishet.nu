@@ -37,6 +37,7 @@ export class SpelComponent implements OnInit {
   tuple: App.Tuple | undefined
 
   randomKaart: Map<string, string> = new Map()
+  givenName: string = ""
 
   answer(obj: App.Object): void {
     if (this.guessed(obj)) return;
@@ -50,7 +51,8 @@ export class SpelComponent implements OnInit {
         this.persoon.setTuple(this.tuple)
         this.guessedTuples.set(this.tuple, obj)
         this.guessedObjects.set(obj, true)
-        this.tuple = undefined
+        // This forces the user to return to choices after a correct guess:
+        // this.tuple = undefined
       } else {
         this.guessedObjects.set(obj, false)
         this.persoon.deleteTuple(this.tuple)
@@ -68,8 +70,18 @@ export class SpelComponent implements OnInit {
     if(!this.kleurKaart()) {
       alert('Je moet de kleur van de kaart nog raden!')
     } else {
-      this.router.navigate([`/personen/${naam}/kleur/${this.kleurKaart()}`]);
+      if (naam !== this.givenName) {
+        alert(`Helaas, ${naam} is niet de persoon die ik in gedachten heb.`)
+        this.guesses++
+      } else {
+        this.router.navigate([`/personen/${naam}/kleur/${this.kleurKaart()}`]);
+      }
     }
+  }
+
+  guessedRight2() : boolean
+  {
+    return this.guessedTuples.has(App.KleurKaart) && this.results?.length == 1 && this.results[0].voornaam.value == this.givenName
   }
 
   kleurKaart(): string {
@@ -106,9 +118,10 @@ export class SpelComponent implements OnInit {
 
     //Fetch a Random Person
     // Warning: happy coding with lots of 'any' is in place ;-)
-    this.service.fetch("SELECT ?p WHERE { ?p a <https://wieishet.nu/ontologie#Persoon> } ORDER BY RAND() LIMIT 1")
+    this.service.fetch("SELECT ?p WHERE { ?p a <https://wieishet.nu/ontologie#Persoon> } LIMIT 20")
       .subscribe((response: any) => {
-        const persoon: string = response.results.bindings[0].p.value
+        let randomIx = Math.floor(Math.random() * response.results.bindings.length)
+        const persoon: string = response.results.bindings[randomIx].p.value
         this.service.fetch(`SELECT * WHERE {<${persoon}> ?pred ?obj}`)
           .subscribe((response: any) => {
             response.results.bindings.forEach((binding: any) => {
@@ -116,6 +129,8 @@ export class SpelComponent implements OnInit {
                 const pred: string = binding.pred.value.replace("https://wieishet.nu/ontologie#", "")
                 const obj: string = binding.obj.value.replace("https://wieishet.nu/ontologie#", "")
                 this.randomKaart.set(pred, obj)
+              } else if (binding.pred.value == 'https://schema.org/givenName') {
+                this.givenName = binding.obj.value
               }
             })
           })

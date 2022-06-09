@@ -1,14 +1,17 @@
-<div *ngIf="!tuple">
+<p><prism language="sparql" source="{{ persoon.sparql() }}"></prism></p>
+<div *ngIf="guessedRight2()">
+  <h2>Gefeliciteerd, je hebt gewonnen!</h2>
+  <p>De persoon die ik in gedachten had was inderdaad <em>{{ givenName }}</em>, je hebt het in {{ guesses }} keer geraden.</p>
+  <p>Klik op de kaart om te bekijken hoe de RDF er uit ziet.</p>
+</div>
+<div *ngIf="!tuple && !guessedRight2()" class="raad-menu">  
   <p *ngFor="let tuple of tuples; let i = index" >
-    <prism *ngIf="guessedTuples.has(tuple)" language="sparql" source="?wie {{tuple.getPredicate()}} {{tuple.object?.getIri()}} ."></prism>
-  </p>
-  <p *ngFor="let tuple of tuples; let i = index" >
-    <a *ngIf="!guessedTuples.has(tuple)" class="button but_secondary but_small" (click)="setTuple(i)">
+    <a [class.correctGuess]="guessedTuples.has(tuple)" class="button but_secondary but_small" (click)="setTuple(i)">
       {{ tuple.question }}
     </a>
   </p>
 </div>
-<div *ngIf="tuple">
+<div *ngIf="tuple && !guessedRight2()">
   <h3>{{ tuple.question }}</h3>
   <p *ngFor="let obj of tuple.objects">
     <a 
@@ -31,5 +34,6 @@
     <p>{{ kaart.voornaam.value }}</p>
   </h1>
 </div>
-<p>je hebt {{ guesses }} keer geraden</p>
+<p *ngIf="!guessedRight2()">je hebt {{ guesses }} keer geraden</p>
 <p><a class="button but_main" href="/spel">Start opnieuw</a></p>
+<p>&nbsp;</p>

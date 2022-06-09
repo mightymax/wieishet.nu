@@ -136,13 +136,14 @@ SELECT (COUNT(*) AS ?count) WHERE {
 
   sparql(): string
   {
-    
+    let where = this.getWhere().length ? ` ;\n    ` + this.getWhere().join("\n    "): ""
+
     let rq = `
 PREFIX ${NS.prefix} <${NS.iri}>
 PREFIX schema: <https://schema.org/> 
 
 SELECT * WHERE {
-  ?persoon a ${this.getIri()};${this.getWhere().join("\n    ")} .
+  ?persoon a ${this.getIri()}${where} .
   ?persoon schema:givenName ?voornaam; 
     schema:image ?afbeelding .
 } `

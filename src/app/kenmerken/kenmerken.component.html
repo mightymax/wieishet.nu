@@ -1,12 +1,7 @@
-<div *ngIf="count == 1">
-  <p>
-    Het lijkt er op dat we je kaart gevonden hebben!
-  </p>
-  <p>
-    <a class="button but_main" routerLink="/resultaat">Bekijk resultaat</a>
-  </p>
-</div>
 <div *ngIf="count == 0">
+  <p *ngIf="persoon?.tuples?.size">
+    <prism language="turtle" source="{{ rdf() }}"></prism>
+  </p>
   <h2>Oops!</h2>
   <p>
     Het lijkt er op dat we geen kaart kunnen vinden <br>
@@ -17,8 +12,9 @@
     <a class="button but_main" (click)="reset()">Begin opnieuw</a>
   </p>
 </div>
-<div *ngIf="count > 1">
+<div *ngIf="count != 0 && hasNext()">
   <h1>Kenmerken van jouw kaart</h1>
+  <prism *ngIf="persoon?.tuples?.size" language="turtle" source="{{ rdf() }}"></prism>
   <h2>{{ tuple!.question }}:</h2>
   <ul>
     <li *ngFor="let obj of tuple!.objects">
@@ -27,10 +23,21 @@
         [class.active]="tuple!.object == obj" (click)="setObject(obj)">{{ obj.label }}</a>
     </li>
   </ul>
-  <!-- <div *ngFor="let t of persoon?.tuplesAsArray()">
-    <prism *ngIf="t.predicate != 'kleurkaart'" language="turtle" source="{{ persoon?.getIri() }} {{ t.getPredicate() }} {{ t.getObject() }} ">
-    </prism>
-  </div> -->
+</div>
+<p *ngIf="!hasNext()">
+  <prism *ngIf="persoon?.tuples?.size" language="turtle" source="{{ rdf() }}"></prism>
+</p>
+<div *ngIf="results" [ngClass]="{'kaarten': results.length > 1}">
+  <h1 *ngFor="let kaart of results" class="kaart {{ kleurKaart() }}" (click)="goto(kaart.voornaam.value)" style="cursor: pointer;">
+    <img [src]="kaart.afbeelding.value">
+    <p>{{ kaart.voornaam.value }}</p>
+  </h1>
+</div>
+
+<div *ngIf="count == 1">
+  <p>
+    <a class="button but_main" (click)="reset()">Begin opnieuw</a>
+  </p>
 </div>
 <!-- <a *ngIf="hasNext() && tuple?.hasObject() && count>1" class="button but_main" (click)="next()">Volgende kenmerk &raquo;</a> -->
 <!-- <a *ngIf="(!hasNext() && tuple?.hasObject()) || count == 1" class="button but_main" routerLink="/resultaat">Bekijk resultaat</a> -->
