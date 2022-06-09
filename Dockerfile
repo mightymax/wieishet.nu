@@ -9,7 +9,6 @@ COPY ["*.json", "entrypoint.sh", "nginx.conf", "./" ]
 
 RUN \
   npm install && \
-  perl -pi -e 's/https:\/\/wieishet.nu\/assets\/personen/http:\/\/localhost:8080\/assets\/personen/g' ./src/ontologie/wieishet.ttl && \
   ./node_modules/.bin/ng build && \
   apt update && apt install -y nginx default-jre-headless && \
   cp nginx.conf /etc/nginx/sites-enabled/default && \

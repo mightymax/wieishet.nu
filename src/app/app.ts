@@ -1,3 +1,5 @@
+import { environment } from 'src/environments/environment';
+
 export const NS = {
   iri: "https://wieishet.nu/ontologie#",
   prefix: "wie:",
@@ -311,4 +313,16 @@ export interface IQueryResponseCount
         }
       }[]
   }
+}
+
+export class Imageresolver extends Image
+{
+  setSrc(src: string) {
+    if (src.match(/^.+\/[A-Z][a-z]{1,5}\.jpg$/)) {
+      this.src = src.replace(/^.+\/([A-Z][a-z]{1,5}\.jpg)$/, `${environment.basePathKaartImages}/$1`)
+    } else {
+      this.src = src
+    }
+  }
+
 }

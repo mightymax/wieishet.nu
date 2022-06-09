@@ -56,7 +56,7 @@ class Kaarten {
         }
         h1.classList.add('kaart')
         const img = new Image()
-        img.src = kaart.afbeelding.value
+        img.src = kaart.afbeelding.value.replace(/^.+(\/assets\/personen\/[A-Z][a-z]{1,5}\.jpg)$/,"$1")
         h1.appendChild(img)
         const p = document.createElement('p')
         p.textContent = kaart.voornaam.value;

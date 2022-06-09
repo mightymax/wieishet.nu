@@ -29,7 +29,7 @@
 </p>
 <div *ngIf="results" [ngClass]="{'kaarten': results.length > 1}">
   <h1 *ngFor="let kaart of results" class="kaart {{ kleurKaart() }}" (click)="goto(kaart.voornaam.value)" style="cursor: pointer;">
-    <img [src]="kaart.afbeelding.value">
+    <img [src]="img(kaart.afbeelding.value).src">
     <p>{{ kaart.voornaam.value }}</p>
   </h1>
 </div>

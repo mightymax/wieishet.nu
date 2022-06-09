@@ -155,4 +155,9 @@ export class SpelComponent implements OnInit {
     this.ngOnInit()
   }
 
+  img(src: string): App.Imageresolver {
+    let img = new App.Imageresolver()
+    img.setSrc(src);
+    return img
+  }
 }

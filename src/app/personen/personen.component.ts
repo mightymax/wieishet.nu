@@ -45,8 +45,8 @@ SELECT * WHERE {
         const sparqlResult = { ...response }
         this.loading = false
         if (sparqlResult.results.bindings.length == 1) {
-          const img=new Image();
-          img.src=sparqlResult.results.bindings[0].afbeelding.value;
+          const img=new App.Imageresolver();
+          img.setSrc(sparqlResult.results.bindings[0].afbeelding.value)
           img.onload = () => {
             this.kaart = {
               voornaam: sparqlResult.results.bindings[0].voornaam.value,

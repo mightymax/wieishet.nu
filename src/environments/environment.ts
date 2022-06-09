@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  sparqlEndpoint: "http://localhost:3030/wieishet/query"
+  sparqlEndpoint: "http://localhost:3030/wieishet/query",
+  basePathKaartImages: "http://localhost:4200/assets/personen/"
 };
 
 /*

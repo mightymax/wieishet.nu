@@ -57,14 +57,18 @@
 .
 
 :KleurHaar a owl:Class ;
+  rdfs:label "Kleur haar"@nl ;
+  owl:OneOf (:Blond :Zwart :Gemixt :Bruin :Rood :Kaal :GrijsWit) ;
   rdfs:subClassOf [
     a owl:Restriction ;
-    owl:onProperty :kleurhaar ;
+    owl:onProperty :kleurogen ;
     owl:allValuesFrom :Persoon ;
   ]
 .
 
 :KleurOgen a owl:Class ;
+  rdfs:label "Kleur haar"@nl ;
+  owl:oneOf (:Blauw :Bruin :Groen) ;
   rdfs:subClassOf [
     a owl:Restriction ;
     owl:onProperty :kleurhaar ;
@@ -73,6 +77,7 @@
 .
 
 :Geslacht a owl:Class ;
+  owl:OneOf (:Man :Vrouw) ;
   rdfs:subClassOf [
     a owl:Restriction ;
     owl:onProperty :geslacht ;
@@ -80,82 +85,71 @@
   ]
 .
 
-# Data properties:
-schema:givenName a owl:DatatypeProperty ;
-  rdfs:domain :Persoon ;
-  rdfs:range xsd:string ;
-.
-
-schema:image a owl:DatatypeProperty ;
-  rdfs:domain :Persoon ;
-  rdfs:range rdf:resource ;
-.
-
-:kleurhaar a owl:DatatypeProperty ;
+:kleurhaar a rdf:Property ;
   rdfs:domain :Persoon ;
   rdfs:range :KleurHaar
 .
 
-:kleurogen a owl:DatatypeProperty ;
+:kleurogen a rdf:Property ;
   rdfs:domain :Persoon ;
   rdfs:range :KleurOgen
 .
 
-:geslacht a owl:DatatypeProperty ;
+:geslacht a rdf:Property ;
   rdfs:domain :Persoon ;
   rdfs:range :Geslacht ;
   owl:subPropertyOf schema:GenderType ; 
 .
 
-:bril a owl:DatatypeProperty ;
+:bril a rdf:Property ;
   rdfs:domain :Persoon ;
   rdfs:range xsd:boolean ;
 . 
 
-:hoofdbedekking a owl:DatatypeProperty ;
+:hoofdbedekking a rdf:Property ;
   rdfs:domain :Persoon ;
   rdfs:range xsd:boolean ;
 . 
 
-:gezichtsbeharing a owl:DatatypeProperty ;
+:gezichtsbeharing a rdf:Property ;
   rdfs:domain :Persoon ;
   rdfs:range xsd:boolean ;
 . 
 
-:Blond a owl:NamedIndividual, :KleurHaar;
-  rdfs:label "Blond" .
+:Blond a owl:NamedIndividual;
+  rdfs:label "Blond"@nl .
 
-:Bruin a owl:NamedIndividual, :KleurHaar;
-  rdfs:label "Bruin" .
+:Bruin a owl:NamedIndividual;
+  rdfs:label "Bruin"@nl .
 
-:Rood a owl:NamedIndividual, :KleurHaar;
-  rdfs:label "Rood" .
+:Rood a owl:NamedIndividual;
+  rdfs:label "Rood"@nl .
 
-:Zwart a owl:NamedIndividual, :KleurHaar;
-  rdfs:label "Zwart" .
+:Zwart a owl:NamedIndividual;
+  rdfs:label "Zwart" @nl.
 
-:GrijsWit a owl:NamedIndividual, :KleurHaar;
-  rdfs:label "Grijs/Wit" .
+:GrijsWit a owl:NamedIndividual;
+  rdfs:label "Grijs/Wit"@nl .
 
-:Kaal a owl:NamedIndividual, :KleurHaar;
-  rdfs:label "Kaal" .
+:Kaal a owl:NamedIndividual;
+  rdfs:label "Kaal"@nl .
 
-:Geverfd a owl:NamedIndividual, :KleurHaar;
-  rdfs:label "Geverfd/Gemixt" .
+:Geverfd a owl:NamedIndividual;
+  rdfs:label "Geverfd/Gemixt"@nl .
 
 :Bruin a :KleurOgen .
 
-:Blauw a owl:NamedIndividual, :KleurOgen;
-  rdfs:label "Blauw" .
+:Blauw a owl:NamedIndividual;
+  rdfs:label "Blauw"@nl .
 
-:Groen a owl:NamedIndividual, :KleurOgen;
-  rdfs:label "Groen" .
+:Groen a owl:NamedIndividual;
+  rdfs:label "Groen"@nl .
 
-:Man a owl:NamedIndividual, :Geslacht ;
-  rdfs:label "Man" .
+:Man a owl:NamedIndividual ;
+  rdfs:label "Man"@nl .
 
-:Vrouw a owl:NamedIndividual, :Geslacht ;
-  rdfs:label "Vrouw" .
+:Vrouw a owl:NamedIndividual ;
+  rdfs:label "Vrouw"@nl .
 
 :PersoonShape a sh:NodeShape ;
   sh:label "Persoon shape" ;

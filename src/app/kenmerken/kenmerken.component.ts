@@ -129,4 +129,10 @@ export class KenmerkenComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.subscription) this.subscription.unsubscribe();
   }
+
+  img(src: string): App.Imageresolver {
+    let img = new App.Imageresolver()
+    img.setSrc(src);
+    return img
+  }
 }
