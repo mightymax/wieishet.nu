@@ -5,24 +5,23 @@ ARG DLCDN=https://dlcdn.apache.org/jena/binaries
 
 WORKDIR /app
 COPY src ./src 
-COPY ["*.json", "entrypoint.sh", "./" ]
+COPY ["*.json", "entrypoint.sh", "nginx.conf", "./" ]
 
 RUN \
-  npm install -g http-server && \
   npm install && \
+  perl -pi -e 's/https:\/\/wieishet.nu\/assets\/personen/http:\/\/localhost:8080\/assets\/personen/g' ./src/ontologie/wieishet.ttl && \
   ./node_modules/.bin/ng build && \
-  curl -s ${DLCDN}/apache-jena-${FUSEKI_VERSION}.tar.gz | tar zx 
+  apt update && apt install -y nginx default-jre-headless && \
+  cp nginx.conf /etc/nginx/sites-enabled/default && \
+  curl -s ${DLCDN}/apache-jena-fuseki-${FUSEKI_VERSION}.tar.gz | tar zx 
 
 EXPOSE 8080 
-EXPOSE 3030
 
 ENV \
-  JENA_HOME=/app/apache-jena-${FUSEKI_VERSION} \
-  FUSEKI_HOME=/appt/apache-jena-fuseki-${FUSEKI_VERSION} \
+  FUSEKI_HOME=/app/apache-jena-fuseki-${FUSEKI_VERSION} \
   FUSEKI_DIR=/app/apache-jena-fuseki-${FUSEKI_VERSION} \
   FUSEKI_JAR=fuseki-server.jar \
   JAVA_OPTIONS="-Xmx512M -Xms512M"  
 
 
-ENTRYPOINT ["./entrypoint.sh" ]
-CMD []
+ENTRYPOINT ["/app/entrypoint.sh" ]
