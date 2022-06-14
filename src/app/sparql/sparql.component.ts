@@ -19,6 +19,7 @@ export class SparqlComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     new yasgui(environment.sparqlEndpoint)
     document.body.classList.add('sparql')
+    document.body.classList.add('step')
   }
 
 }

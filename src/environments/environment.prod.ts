@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  sparqlEndpoint: "/query"
+  sparqlEndpoint: "/query",
+  basePathKaartImages: ""
 };

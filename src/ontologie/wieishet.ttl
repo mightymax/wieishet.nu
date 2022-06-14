@@ -5,6 +5,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
 @prefix personen: <https://wieishet.nu/personen/> .
 @prefix : <https://wieishet.nu/ontologie#> .
@@ -58,7 +59,7 @@
 
 :KleurHaar a owl:Class ;
   rdfs:label "Kleur haar"@nl ;
-  owl:OneOf (:Blond :Zwart :Gemixt :Bruin :Rood :Kaal :GrijsWit) ;
+  owl:OneOf (:Blond :Zwart :Geverfd :Bruin :Rood :Kaal :GrijsWit) ;
   rdfs:subClassOf [
     a owl:Restriction ;
     owl:onProperty :kleurogen ;
@@ -67,7 +68,7 @@
 .
 
 :KleurOgen a owl:Class ;
-  rdfs:label "Kleur haar"@nl ;
+  rdfs:label "Kleur ogen"@nl ;
   owl:oneOf (:Blauw :Bruin :Groen) ;
   rdfs:subClassOf [
     a owl:Restriction ;
@@ -224,7 +225,7 @@ personen:Daniel a :Persoon ;
   :kleurhaar :Rood ;
   :kleurogen :Groen ;
   :geslacht :Man ;
-  :hoofdbedekking true;
+  :hoofdbedekking false;
   :gezichtsbeharing true;
   :bril false ;
 .
@@ -415,4 +416,18 @@ personen:David a :Persoon ;
   :gezichtsbeharing true;
   :bril false ;
 .
+
+## Relaties
+:David schema:spouse :Katie .
+:Katie schema:parent :Mia .
+:Jordan schema:parent :Al .
+:Sofia schema:sibling :Jordan .
+
+schema:parent rdfs:subPropertyOf foaf:knows .
+schema:sibling rdfs:subPropertyOf foaf:knows .
+schema:spouse rdfs:subPropertyOf foaf:knows .
+
+schema:parent owl:inverseOf schema:children .
+schema:spouse a owl:SymmetricProperty .
+schema:sibling a owl:SymmetricProperty .
 
