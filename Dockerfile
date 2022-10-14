@@ -1,6 +1,6 @@
 FROM node
 
-ARG FUSEKI_VERSION=4.5.0
+ARG FUSEKI_VERSION=4.6.1
 ARG DLCDN=https://dlcdn.apache.org/jena/binaries
 
 WORKDIR /app
@@ -9,7 +9,7 @@ COPY ["*.json", "entrypoint.sh", "nginx.conf", "./" ]
 
 RUN \
   npm install && \
-  ./node_modules/.bin/ng build && \
+  ./node_modules/.bin/ng build --configuration=docker  && \
   apt update && apt install -y nginx default-jre-headless && \
   cp nginx.conf /etc/nginx/sites-enabled/default && \
   curl -s ${DLCDN}/apache-jena-fuseki-${FUSEKI_VERSION}.tar.gz | tar zx 
