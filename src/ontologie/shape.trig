@@ -1,0 +1,88 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sdo: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbpo: <http://dbpedia.org/ontology/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix person: <https://wieishet.nu/person/> .
+@prefix shape: <https://wieishet.nu/shapes/person#> .
+
+shape: {
+  shape: a sh:NodeShape ;
+    sh:label "Person shape"@en, "Persoonsvorm"@nl ;
+    sh:closed false;
+    sh:ignoredProperties (rdf:type) ;
+    sh:targetClass sdo:Person  ;
+    sh:xone (
+      [sh:property shape:hair-color]
+      [sh:property shape:hair-style]
+    ) ;
+    sh:property 
+      shape:givenName, shape:gender, 
+      shape:image, shape:eye-color,
+      shape:has-facial-hair, shape:wears-eyeglasses-or-headgear
+  .
+
+  shape:givenName a sh:PropertyShape ;
+    sh:path sdo:givenName ;
+    sh:name "Given name"@en, "Voornaam"@nl ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:datatype xsd:string .
+
+  shape:gender a sh:PropertyShape ;
+    sh:path sdo:gender ;
+    sh:name "Gender"@en, "Geslacht"@nl ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:in (sdo:Male sdo:Female) ;
+    sh:nodeKind sh:IRI .
+
+  shape:image a sh:PropertyShape ;
+    sh:path sdo:image ;
+    sh:name "Card"@en, "Kaart"@nl ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:nodeKind sh:IRI .
+
+  shape:eye-color a sh:PropertyShape ;
+    sh:path wdt:P1340 ;
+    sh:name "Eye color"@en, "Kleur ogen"@nl ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:in (wd:Q17122705 wd:Q17122854 wd:Q17122834 ) ;
+    sh:nodeKind sh:IRI .
+  
+  shape:hair-color a sh:PropertyShape ;
+    sh:path wdt:P1884 ;
+    sh:name "Hair color"@en, "Kleur haar"@nl ;
+    sh:nodeKind sh:IRI ;
+    sh:in (wd:Q1922956 wd:Q86724488 wd:Q152357 wd:Q10509939 wd:Q58628766 wd:Q2367101);
+    sh:minCount 1 ;
+    sh:maxCount 2 .
+
+  shape:hair-style a sh:PropertyShape ;
+    sh:path wdt:P8839 ;
+    sh:name "Hair style"@en, "Haarstijl"@nl;
+    sh:hasValue wd:Q181391 ;
+    sh:minCount 1 ;
+    sh:maxCount 1 .
+
+  shape:has-facial-hair a sh:PropertyShape ;
+    sh:path wdt:P8852 ;
+    sh:name "Has facial hair"@en, "Heeft gezichtsbeharing"@nl ;
+    sh:maxCount 2 ;
+    sh:in ( wd:Q15179 wd:Q42804 false) .
+
+  shape:wears-eyeglasses-or-headgear a sh:PropertyShape ;
+    sh:path wdt:P3828 ;
+    sh:name "Wears eyeglasses and/or hat"@en, "Draagt bril en/of hoofdbedekking"@nl ;
+    sh:maxCount 2 ;
+    sh:in ( wd:Q37501 wd:Q14952 ).
+
+}

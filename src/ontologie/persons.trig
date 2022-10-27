@@ -1,0 +1,208 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sdo: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbpo: <http://dbpedia.org/ontology/> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix person: <https://wieishet.nu/person/> .
+
+<https://wieishet.nu/person/instances> {
+
+  person:Mike a sdo:Person ;
+    sdo:givenName "Mike";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Mike.jpg>; 
+    sdo:gender sdo:Male ;
+    wdt:P1884 wd:Q1922956 ; # Hair color = black hair
+    wdt:P1340 wd:Q17122705 ; # brown eyes
+    wdt:P3828 wd:Q14952 ; # wears headgear
+  .
+
+  person:Jordan a sdo:Person ;
+    sdo:givenName "Jordan";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Jordan.jpg>; 
+    sdo:gender sdo:Male ;
+    wdt:P1884 wd:Q86724488 ; # human hair color = dyed hair color
+    wdt:P1340 wd:Q17122705 ; # eye color = brown eyes
+    wdt:P8852 wd:Q15179, wd:Q42804 ; # facial hair moustache and beard
+  .
+
+  person:Daniel a sdo:Person ;
+    sdo:givenName "Daniel";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Daniel.jpg> ;
+    sdo:gender sdo:Male ; 
+    wdt:P1884 wd:Q152357 ; #hair color = red hair
+    wdt:P1340 wd:Q17122854 ; # eye color = green eyes
+    wdt:P8852 wd:Q15179, wd:Q42804 ; # facial hair moustache and beard
+  .
+
+  person:Sam a sdo:Person ;
+    sdo:givenName "Sam";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Sam.jpg>; 
+    sdo:gender sdo:Male ;
+    wdt:P1884 wd:Q1922956 ; # Hair color = Black
+    wdt:P1340 wd:Q17122854 ; # eye color = Green
+    wdt:P3828 wd:Q14952; # wairs headgear
+  .
+
+  person:Leo a sdo:Person ;
+    sdo:givenName "Leo";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Leo.jpg>; 
+    sdo:gender sdo:Male ;
+    wdt:P1884 wd:Q10509939, wd:Q58628766 ; #hair color = gray hair, silver hair
+    wdt:P1340 wd:Q17122705 ; # eye color = Brown
+    wdt:P6477 wd:Q14952 ; # does not wair headgear
+    wdt:P8852 wd:Q15179 ; # facial hair moustache 
+  .
+
+  person:Amy a sdo:Person ;
+    sdo:givenName "Amy";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Amy.jpg>; 
+    sdo:gender sdo:Female ;
+    wdt:P3828 wd:Q37501 ; # wears eyeglasses
+    wdt:P1884 wd:Q86724488 ; # human hair color = dyed hair color
+    wdt:P1340 wd:Q17122705 ; # eye color = Brown
+    wdt:P3828 wd:Q37501 ; # wears eyeglasses
+  .
+
+  person:Laura a sdo:Person ;
+    sdo:givenName "Laura";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Laura.jpg>; 
+    sdo:gender sdo:Female ;
+    wdt:P1884 wd:Q1922956 ; # Hair color = Black
+    wdt:P1340 wd:Q17122854 ; # eye color = Green
+  .
+
+  person:Olivia a sdo:Person ;
+    sdo:givenName "Olivia";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Olivia.jpg>; 
+    sdo:gender sdo:Female ;
+    wdt:P1884 wd:Q86724488 ; # human hair color = dyed hair color
+    wdt:P1340 wd:Q17122705 ; # eye color = Brown
+  .
+
+  person:Rachel a sdo:Person ;
+    sdo:givenName "Rachel";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Rachel.jpg>; 
+    sdo:gender sdo:Female ;
+    wdt:P1884 wd:Q2367101 ; # Hair color = Brown
+    wdt:P1340 wd:Q17122834; # eye color = Blue
+    wdt:P3828 wd:Q37501 ; # wears eyeglasses
+  .
+
+  person:Sofia a sdo:Person ;
+    sdo:givenName "Sofia";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Sofia.jpg>; 
+    sdo:gender sdo:Female ;
+    wdt:P1884 wd:Q2367101 ; # Hair color = Brown
+    wdt:P1340 wd:Q17122854 ; # eye color = Green
+  .
+
+  person:Katie a sdo:Person ;
+    sdo:givenName "Katie";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Katie.jpg>; 
+    sdo:gender sdo:Female ;
+    wdt:P1884 wd:Q2367101 ; # Hair color = Blond
+    wdt:P1340 wd:Q17122834; # eye color = Blue
+    wdt:P3828 wd:Q14952; # wairs headgear
+  .
+
+  person:Lily a sdo:Person ;
+    sdo:givenName "Lily";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Lily.jpg>; 
+    sdo:gender sdo:Female ;
+    wdt:P1884 wd:Q2367101 ; # Hair color = Brown
+    wdt:P1340 wd:Q17122854 ; # eye color = Green
+    wdt:P3828 wd:Q14952; # wairs headgear
+  .
+
+  person:Mia a sdo:Person ;
+    sdo:givenName "Mia";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Mia.jpg>; 
+    sdo:gender sdo:Female ;
+    wdt:P1884 wd:Q1922956 ; # Hair color = Black
+    wdt:P1340 wd:Q17122705 ; # eye color = Brown
+  .
+
+  person:Carmen a sdo:Person ;
+    sdo:givenName "Carmen";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Carmen.jpg>; 
+    sdo:gender sdo:Female ;
+    wdt:P1884 wd:Q10509939, wd:Q58628766 ; #hair color = gray hair, silver hair
+    wdt:P1340 wd:Q17122705 ; # eye color = Brown
+  .
+
+  person:Emma a sdo:Person ;
+    sdo:givenName "Emma";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Emma.jpg>; 
+    sdo:gender sdo:Female ;
+    wdt:P1884 wd:Q152357 ; # Hair color = Red
+    wdt:P1340 wd:Q17122705 ; # eye color = Brown
+  .
+
+  person:Al a sdo:Person ;
+    sdo:givenName "Al";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Al.jpg>; 
+    sdo:gender sdo:Male ;
+    wdt:P8839 wd:Q181391 ; # hair style = baldness
+    wdt:P1340 wd:Q17122854 ; # eye color = Green
+    wdt:P8852 wd:Q15179, wd:Q42804 ; # facial hair moustache and beard
+    wdt:P3828 wd:Q37501 ; # wears eyeglasses
+  .
+
+  person:Eric a sdo:Person ;
+    sdo:givenName "Eric";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Eric.jpg>; 
+    sdo:gender sdo:Male ;
+    wdt:P1884 wd:Q86724488 ; # human hair color = dyed hair color
+    wdt:P1340 wd:Q17122834; # eye color = Blue
+  .
+
+  person:Ben a sdo:Person ;
+    sdo:givenName "Ben";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Ben.jpg>; 
+    sdo:gender sdo:Male ;
+    wdt:P1884 wd:Q2367101 ; # Hair color = Brown
+    wdt:P1340 wd:Q17122705 ; # eye color = Brown
+    wdt:P3828 wd:Q37501 ; # wears eyeglasses
+  .
+
+  person:Joe a sdo:Person ;
+    sdo:givenName "Joe";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/Joe.jpg>; 
+    sdo:gender sdo:Male ;
+    wdt:P8839 wd:Q181391 ; # hair style = baldness
+    wdt:P1340 wd:Q17122834; # eye color = Blue
+    wdt:P8852 wd:Q15179 ; # facial hair moustache 
+    wdt:P3828 wd:Q37501 ; # wears eyeglasses
+  .
+
+  person:David a sdo:Person ;
+    sdo:givenName "David";
+    sdo:image <https://wieishet.lindeman.nu/assets/personen/David.jpg>; 
+    sdo:gender sdo:Male ;
+    wdt:P1884 wd:Q2367101 ; # Hair color = Blond
+    wdt:P1340 wd:Q17122705 ; # eye color = Brown
+    wdt:P3828 wd:Q14952; # wairs headgear
+    wdt:P8852 wd:Q15179 ; # facial hair moustache 
+  .
+
+  ## Relaties
+  # person:David sdo:spouse person::Katie .
+  # person::Katie sdo:parent person::Mia .
+  # person::Jordan sdo:parent person::Al .
+  # person::Sofia sdo:sibling person::Jordan .
+
+  # sdo:parent rdfs:subPropertyOf foaf:knows .
+  # sdo:sibling rdfs:subPropertyOf foaf:knows .
+  # sdo:spouse rdfs:subPropertyOf foaf:knows .
+
+  # sdo:parent owl:inverseOf sdo:children .
+  # sdo:spouse a owl:SymmetricProperty .
+  # sdo:sibling a owl:SymmetricProperty .
+
+}
